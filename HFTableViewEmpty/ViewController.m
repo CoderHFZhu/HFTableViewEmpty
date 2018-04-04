@@ -29,8 +29,7 @@
 }
 - (void)addNoteView {
     [self.tableView addNoteViewWithImageName:@"reload" noteText:@"可以添加下拉刷新，和没有引用这个类一样的用法，也可以点击按钮刷新" refreshBtnImg:@"detail_btn_filladdress" callBack:^{
-        self.numberOfSections ++;
-        [self.tableView reloadData];
+        [self addSource:nil];
     }];
 }
 - (void)addCustomNoteView {
@@ -46,9 +45,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 1) {
-        return 0;
-    }
+  
     return ((section%2)==0)?1:2;
 }
 - (IBAction)addSource:(id)sender {
@@ -66,6 +63,15 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.numberOfSections;
 }
+
+
+//-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+//    return 1;
+//
+//}
+//-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+//    return self.numberOfSections;
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
